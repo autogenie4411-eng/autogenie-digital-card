@@ -131,8 +131,7 @@ async function loadProfile() {
     }
 
     if (affiliationText) {
-      const parts = ['오토지니', department, position].filter(Boolean);
-      affiliationText.textContent = parts.join(' · ');
+      affiliationText.textContent = department;
     }
 
     document.title = siteName;
