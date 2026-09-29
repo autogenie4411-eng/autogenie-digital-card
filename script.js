@@ -84,7 +84,6 @@ async function loadProfile() {
 
     const name = data.name || profileName;
     const phone = data.phone || '';
-    const phoneValue = phone.replace(/\D/g, '');
     const email = data.email || '';
     const kakaoChatUrl = data.kakaoChatUrl || '';
     const department = data.department || '';

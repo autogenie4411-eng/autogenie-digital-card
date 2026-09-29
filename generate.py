@@ -115,7 +115,6 @@ def build_card(template, folder, photo, data):
     phone_clean = re.sub(r'\D', '', phone)
     email = data.get('email', '').strip()
     kakao_chat_url = data.get('kakaoChatUrl', '').strip()
-    kakao_chat_url = data.get('kakaoChatUrl', '').strip()
     department = data.get('department', '').strip()
     position = data.get('position', '').strip()
     company = data.get('company', COMPANY_DEFAULT).strip() or COMPANY_DEFAULT
@@ -145,7 +144,7 @@ def build_card(template, folder, photo, data):
 
     s = s.replace('<body>', f'<body data-static-card="true" data-profile-name="{html.escape(name)}" data-kakao-chat-url="{html.escape(kakao_chat_url)}">', 1)
     s = s.replace('href="./style.css"', 'href="../../style.css"')
-    s = s.replace('src="./script.js"', 'src="../../script.js"')
+    s = s.replace('src="./script.js?v=20260929-4"', 'src="../../script.js?v=20260929-4"')
 
     # profile image
     s = re.sub(
