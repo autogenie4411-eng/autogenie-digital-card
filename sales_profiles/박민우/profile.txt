@@ -1,5 +1,5 @@
 name=박민우
-phone=010-1234-7124
+phone=010-5678-1234
 email=kim@autogenie.co.kr
 department=영업부
 position=차장
