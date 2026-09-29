@@ -308,6 +308,7 @@ footer p {
     font-size: 14px;
     line-height: 1.8;
     word-break: keep-all;
+    text-align: left;
 }
 .company-copy h3 {
     margin: 30px 0 14px;
@@ -320,33 +321,31 @@ footer p {
     color: var(--text);
     font-weight: 800;
 }
+
+.service-number {
+    margin-right: 0.45em;
+}
 .company-copy ol {
     margin: 0;
     padding: 0;
     list-style: none;
-    counter-reset: service;
 }
 .company-copy li {
-    position: relative;
     margin: 0 0 15px;
-    padding: 17px 18px 17px 48px;
+    padding: 17px 18px;
     border: 1px solid #e8edf4;
     border-radius: 15px;
     background: #f8fafc;
     color: #69778b;
     font-size: 13px;
     line-height: 1.7;
-    counter-increment: service;
 }
-.company-copy li:before {
-    content: counter(service, decimal-leading-zero);
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--navy);
-    font-size: 14px;
-    font-weight: 850;
+.service-copy {
+    display: block;
+}
+.service-copy p {
+    margin: 3px 0 0;
+    text-align: left;
 }
 .company-copy__closing {
     margin-top: 28px !important;
@@ -356,6 +355,7 @@ footer p {
     color: #fff !important;
     font-weight: 650;
     line-height: 1.75 !important;
+    text-align: center !important;
 }
 
 @media (min-width: 700px) {
