@@ -46,7 +46,7 @@ button {
 
 .hero {
     position: relative;
-    height: 260px;
+    height: 252px;
     overflow: hidden;
     background:
         radial-gradient(
@@ -78,7 +78,7 @@ button {
     right: 0;
     bottom: -1px;
     height: 66px;
-    background: linear-gradient(to bottom right, transparent 49%, #fff 50%);
+    background: #fff;
 }
 .brand {
     position: absolute;
@@ -140,6 +140,7 @@ button {
 }
 .profile__heading {
     min-width: 0;
+    margin-top: 40px;
 }
 .eyebrow {
     display: block;
@@ -389,8 +390,8 @@ footer p {
 }
 
 .company-copy {
-    margin-top: 30px;
-    padding-top: 30px;
+    margin: 30px -22px 0;
+    padding: 30px 22px 0;
     border-top: 1px solid var(--line);
 }
 .company-copy__heading span {
@@ -411,6 +412,7 @@ footer p {
     color: #5f6d81;
     font-size: 14px;
     line-height: 1.8;
+    word-break: keep-all;
 }
 .company-copy h3 {
     margin: 30px 0 14px;
@@ -445,9 +447,9 @@ footer p {
     content: counter(service, decimal-leading-zero);
     position: absolute;
     left: 15px;
-    top: 17px;
+    top: 27px;
     color: var(--navy);
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 850;
 }
 .company-copy__closing {
