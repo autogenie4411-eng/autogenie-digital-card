@@ -46,7 +46,7 @@ async function loadProfile() {
   if (document.body.dataset.staticCard === 'true') {
     window.currentProfileData = {
       name: document.body.dataset.profileName || '',
-      kakaoId: document.body.dataset.kakaoId || '',
+      kakaoChannelId: document.body.dataset.kakaoChannelId || '',
       siteName: document.title
     };
     return;
@@ -69,7 +69,7 @@ async function loadProfile() {
     const name = data.name || profileName;
     const phone = data.phone || '';
     const email = data.email || '';
-    const kakaoId = data.kakaoId || '';
+    const kakaoChannelId = data.kakaoChannelId || '';
     const department = data.department || '';
     const position = data.position || '';
     const company = data.company || COMPANY_NAME;
@@ -166,57 +166,62 @@ async function loadProfile() {
   }
 }
 
+function initKakaoSdk() {
+  const key = (window.AUTOGENIE_CONFIG && window.AUTOGENIE_CONFIG.kakaoJavaScriptKey || '').trim();
+
+  if (!key) {
+    return { ok: false, reason: 'key' };
+  }
+
+  if (!window.Kakao) {
+    return { ok: false, reason: 'sdk' };
+  }
+
+  try {
+    if (!Kakao.isInitialized()) {
+      Kakao.init(key);
+    }
+    return { ok: Kakao.isInitialized(), reason: Kakao.isInitialized() ? '' : 'init' };
+  } catch (error) {
+    console.error('Kakao SDK init error:', error);
+    return { ok: false, reason: 'init' };
+  }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   await loadProfile();
 
   const kakaoBtn = document.getElementById('kakaoBtn');
 
   if (kakaoBtn) {
-    kakaoBtn.addEventListener('click', async () => {
+    kakaoBtn.addEventListener('click', () => {
       const profile = window.currentProfileData || {};
-      const kakaoId = (profile.kakaoId || '').trim();
+      const channelPublicId = (profile.kakaoChannelId || '').trim();
 
-      if (!kakaoId) {
-        showToast('등록된 카카오톡 ID가 없습니다.');
-        alert('등록된 카카오톡 ID가 없습니다.');
+      if (!channelPublicId) {
+        showToast('카카오톡 채널 ID가 등록되지 않았습니다.');
+        alert('profile.txt에 kakaoChannelId를 입력해 주세요.');
         return;
       }
 
-      let copied = false;
+      const status = initKakaoSdk();
+
+      if (!status.ok) {
+        if (status.reason === 'key') {
+          alert('config.js에 카카오 JavaScript 키를 입력해 주세요.');
+        } else {
+          alert('카카오톡 SDK를 불러오지 못했습니다. 도메인 등록과 JavaScript 키를 확인해 주세요.');
+        }
+        return;
+      }
 
       try {
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(kakaoId);
-          copied = true;
-        }
+        Kakao.Channel.chat({
+          channelPublicId
+        });
       } catch (error) {
-        copied = false;
-      }
-
-      if (!copied) {
-        const textarea = document.createElement('textarea');
-        textarea.value = kakaoId;
-        textarea.setAttribute('readonly', '');
-        textarea.style.position = 'fixed';
-        textarea.style.left = '-9999px';
-        document.body.appendChild(textarea);
-        textarea.select();
-
-        try {
-          copied = document.execCommand('copy');
-        } catch (error) {
-          copied = false;
-        }
-
-        textarea.remove();
-      }
-
-      if (copied) {
-        showToast(`카카오톡 ID ${kakaoId}가 복사되었습니다.`);
-        alert(`카카오톡 ID가 복사되었습니다.\n\n${kakaoId}\n\n카카오톡 친구찾기에서 검색해 주세요.`);
-      } else {
-        showToast(`카카오톡 ID: ${kakaoId}`);
-        alert(`카카오톡 ID\n\n${kakaoId}\n\n카카오톡 친구찾기에서 검색해 주세요.`);
+        console.error('Kakao channel chat error:', error);
+        alert('카카오톡 채팅 연결에 실패했습니다. 채널 Public ID와 카카오 개발자 설정을 확인해 주세요.');
       }
     });
   }
