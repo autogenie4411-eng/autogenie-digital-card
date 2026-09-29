@@ -1,0 +1,36 @@
+오토지니 디지털 명함 - 사원 프로필 추가 방법
+
+1. sales_profiles 폴더 안에 사원 이름으로 폴더를 만듭니다.
+
+예)
+sales_profiles/
+├─ 김민수/
+│  ├─ profile.txt
+│  └─ 김민수.png
+└─ 박지석/
+   ├─ profile.txt
+   └─ 박지석.png
+
+2. profile.txt 예시
+
+name=박지석
+phone=010-1234-5678
+email=park@autogenie.co.kr
+department=영업부
+position=팀장
+siteName=박지석 팀장 | 오토지니
+photo=./sales_profiles/박지석/박지석.png
+
+3. 접속 주소
+
+기본:
+index.html
+
+김민수:
+index.html?profile=김민수
+
+박지석:
+index.html?profile=박지석
+
+※ profile.txt 자동 로딩은 웹서버/GitHub Pages에서 정상 작동합니다.
+※ index.html을 PC에서 file:// 방식으로 직접 더블클릭하면 브라우저 보안 때문에 txt fetch가 차단될 수 있습니다.

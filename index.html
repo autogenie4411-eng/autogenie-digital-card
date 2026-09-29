@@ -6,10 +6,10 @@
   <meta name="theme-color" content="#0a2b59">
   <title>김민수 매니저 | 오토지니 디지털 명함</title>
 
-  <meta property="og:title" content="김민수 매니저 | 오토지니">
+  <meta property="og:title" content="김민수 팀장 | 오토지니">
   <meta property="og:description" content="신차 장기렌트 · 자동차리스 전문 상담">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://eunnn-h2.github.io/autogenie-digital-card/og/%EA%B9%80%EB%AF%BC%EC%88%98_og.png">
+  <meta property="og:image" content="https://eunnn-h2.github.io/autogenie-digital-card/og/김민수_og.png">
   <meta property="og:image:alt" content="오토지니 김민수 디지털 명함">
 
   <link rel="stylesheet" href="./style.css">
@@ -18,12 +18,12 @@
   <main class="card-page">
     <section class="profile">
       <div class="profile__top">
-        <img class="avatar" src="./assets/sales-manager-temp.png" alt="김민수 매니저 프로필 사진">
+        <img class="avatar" id="profilePhoto" src="./sales_profiles/김민수/김민수.png" alt="김민수 프로필 사진">
 
         <div class="profile__heading">
-          <h1>김민수</h1>
-          <p class="position">영업부 <span class="divider">|</span> 팀장</p>
-          <p class="company">주식회사 오토지니</p>
+          <h1 id="profileName">김민수</h1>
+          <p class="position" id="profilePosition">영업부 <span class="divider">|</span> 팀장</p>
+          <p class="company" id="profileCompany">주식회사 오토지니</p>
         </div>
       </div>
 
@@ -37,7 +37,7 @@
     <section class="contact-wrap">
       
       <div class="contact-grid">
-        <a class="contact-card contact-card--call" href="tel:01024157124">
+        <a class="contact-card contact-card--call" id="callLink" href="tel:01024157124">
           <span class="contact-icon">☎</span>
           <strong>전화상담</strong>
         </a>
@@ -47,7 +47,7 @@
           <strong>카톡상담</strong>
         </button>
 
-        <a class="contact-card contact-card--sms" href="sms:01024157124">
+        <a class="contact-card contact-card--sms" id="smsLink" href="sms:01024157124">
           <span class="contact-icon">✉</span>
           <strong>문자상담</strong>
         </a>
@@ -63,15 +63,15 @@
         <dl>
           <div>
             <dt>연락처</dt>
-            <dd><a href="tel:01024157124">010-2415-7124</a></dd>
+            <dd><a id="phoneText" href="tel:01024157124">010-2415-7124</a></dd>
           </div>
           <div>
             <dt>이메일</dt>
-            <dd><a href="mailto:kim@autogenie.co.kr">kim@autogenie.co.kr</a></dd>
+            <dd><a id="emailText" href="mailto:kim@autogenie.co.kr">kim@autogenie.co.kr</a></dd>
           </div>
           <div>
             <dt>소속</dt>
-            <dd>오토지니 영업부 · 팀장</dd>
+            <dd id="affiliationText">오토지니 영업부 · 팀장</dd>
           </div>
           <div>
             <dt>전문분야</dt>

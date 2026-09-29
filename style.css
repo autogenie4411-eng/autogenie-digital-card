@@ -46,8 +46,13 @@ button {
 
 /* 상단 프로필 - 카카오톡 공유 이미지와 같은 단순 카드형 */
 .profile {
-    padding: 24px 24px 20px;
-    background: var(--blue);
+    padding: 30px 24px;
+    background-color: var(--blue);
+    background-image:
+        linear-gradient(rgba(8, 42, 86, 0.32), rgba(8, 42, 86, 0.32)),
+        url("./images/bg.png");
+    background-position: center;
+    background-size: cover;
     color: #fff;
 }
 .profile__top {
