@@ -1,0 +1,7 @@
+name=박민우
+phone=010-1234-7124
+email=kim@autogenie.co.kr
+department=영업부
+position=팀장
+siteName=박민우 팀장 | 오토지니
+photo=./sales_profiles/박민우/박민우.png

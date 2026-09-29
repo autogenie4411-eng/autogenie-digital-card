@@ -43,6 +43,13 @@ function setMeta(property, value) {
 }
 
 async function loadProfile() {
+  if (document.body.dataset.staticCard === 'true') {
+    window.currentProfileData = {
+      name: document.body.dataset.profileName || '',
+      siteName: document.title
+    };
+    return;
+  }
   const params = new URLSearchParams(window.location.search);
   const profileName = (params.get('profile') || DEFAULT_PROFILE).trim();
 
