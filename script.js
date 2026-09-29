@@ -46,6 +46,7 @@ async function loadProfile() {
   if (document.body.dataset.staticCard === 'true') {
     window.currentProfileData = {
       name: document.body.dataset.profileName || '',
+      kakaoId: document.body.dataset.kakaoId || '',
       siteName: document.title
     };
     return;
@@ -68,6 +69,7 @@ async function loadProfile() {
     const name = data.name || profileName;
     const phone = data.phone || '';
     const email = data.email || '';
+    const kakaoId = data.kakaoId || '';
     const department = data.department || '';
     const position = data.position || '';
     const company = data.company || COMPANY_NAME;
@@ -146,6 +148,7 @@ async function loadProfile() {
       name,
       phone,
       email,
+      kakaoId,
       department,
       position,
       company,
@@ -171,26 +174,49 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (kakaoBtn) {
     kakaoBtn.addEventListener('click', async () => {
       const profile = window.currentProfileData || {};
-      const shareData = {
-        title: profile.siteName || document.title,
-        text: '차량 관련 문의는 편하게 연락주세요.',
-        url: window.location.href
-      };
+      const kakaoId = (profile.kakaoId || '').trim();
 
-      if (navigator.share) {
-        try {
-          await navigator.share(shareData);
-          return;
-        } catch (error) {
-          if (error && error.name === 'AbortError') return;
-        }
+      if (!kakaoId) {
+        showToast('등록된 카카오톡 ID가 없습니다.');
+        alert('등록된 카카오톡 ID가 없습니다.');
+        return;
       }
 
+      let copied = false;
+
       try {
-        await navigator.clipboard.writeText(window.location.href);
-        showToast('명함 링크를 복사했습니다. 카카오톡에 붙여넣어 주세요.');
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(kakaoId);
+          copied = true;
+        }
       } catch (error) {
-        showToast('현재 환경에서는 공유 기능을 사용할 수 없습니다.');
+        copied = false;
+      }
+
+      if (!copied) {
+        const textarea = document.createElement('textarea');
+        textarea.value = kakaoId;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+
+        try {
+          copied = document.execCommand('copy');
+        } catch (error) {
+          copied = false;
+        }
+
+        textarea.remove();
+      }
+
+      if (copied) {
+        showToast(`카카오톡 ID ${kakaoId}가 복사되었습니다.`);
+        alert(`카카오톡 ID가 복사되었습니다.\n\n${kakaoId}\n\n카카오톡 친구찾기에서 검색해 주세요.`);
+      } else {
+        showToast(`카카오톡 ID: ${kakaoId}`);
+        alert(`카카오톡 ID\n\n${kakaoId}\n\n카카오톡 친구찾기에서 검색해 주세요.`);
       }
     });
   }

@@ -102,6 +102,7 @@ def build_card(template, folder, photo, data):
     name = data.get('name', folder.name).strip()
     phone = data.get('phone', '').strip()
     email = data.get('email', '').strip()
+    kakao_id = data.get('kakaoId', '').strip()
     department = data.get('department', '').strip()
     position = data.get('position', '').strip()
     company = data.get('company', COMPANY_DEFAULT).strip() or COMPANY_DEFAULT
@@ -129,7 +130,7 @@ def build_card(template, folder, photo, data):
     if 'og:image:width' not in s:
         s = s.replace(f'<meta property="og:image" content="{html.escape(og_url)}">', f'<meta property="og:image" content="{html.escape(og_url)}">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="600">')
 
-    s = s.replace('<body>', f'<body data-static-card="true" data-profile-name="{html.escape(name)}">', 1)
+    s = s.replace('<body>', f'<body data-static-card="true" data-profile-name="{html.escape(name)}" data-kakao-id="{html.escape(kakao_id)}">', 1)
     s = s.replace('href="./style.css"', 'href="../../style.css"')
     s = s.replace('src="./script.js"', 'src="../../script.js"')
 
@@ -146,7 +147,7 @@ def build_card(template, folder, photo, data):
     s = replace_id_text(s, 'profileCompany', html.escape(company))
     s = replace_id_text(s, 'phoneText', html.escape(phone))
     s = replace_id_text(s, 'emailText', html.escape(email))
-    s = replace_id_text(s, 'affiliationText', f'오토지니 · {html.escape(department)} · {html.escape(position)}')
+    s = replace_id_text(s, 'affiliationText', html.escape(department))
 
     s = re.sub(r'(<a class="contact-card contact-card--call" id="callLink" href=")[^"]*(")', rf'\1tel:{phone_clean}\2', s, count=1)
     s = re.sub(r'(<a class="contact-card contact-card--sms" id="smsLink" href=")[^"]*(")', rf'\1sms:{phone_clean}\2', s, count=1)

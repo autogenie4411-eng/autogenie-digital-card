@@ -3,5 +3,6 @@ phone=010-2415-7124
 email=kim@autogenie.co.kr
 department=영업부
 position=팀장
+kakaoId=eunnn_h2
 siteName=김민수 팀장 | 오토지니
 photo=./sales_profiles/김민수/김민수.png
