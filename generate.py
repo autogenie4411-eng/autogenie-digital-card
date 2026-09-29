@@ -98,12 +98,24 @@ def replace_id_text(source, element_id, value):
     return re.sub(pattern, lambda m: m.group(1) + value + m.group(3), source, count=1, flags=re.S)
 
 
+
+def format_phone_display(value: str) -> str:
+    digits = re.sub(r'\D', '', value or '')
+
+    if len(digits) == 11 and digits.startswith('01'):
+        return f'{digits[:3]}-{digits[3:7]}-{digits[7:]}'
+    if len(digits) == 10 and digits.startswith('01'):
+        return f'{digits[:3]}-{digits[3:6]}-{digits[6:]}'
+
+    return value or ''
+
 def build_card(template, folder, photo, data):
     name = data.get('name', folder.name).strip()
     phone = data.get('phone', '').strip()
+    phone_clean = re.sub(r'\D', '', phone)
     email = data.get('email', '').strip()
-    kakao_channel_id = data.get('kakaoChannelId', '').strip()
-    kakao_id = data.get('kakaoId', '').strip()
+    kakao_chat_url = data.get('kakaoChatUrl', '').strip()
+    kakao_chat_url = data.get('kakaoChatUrl', '').strip()
     department = data.get('department', '').strip()
     position = data.get('position', '').strip()
     company = data.get('company', COMPANY_DEFAULT).strip() or COMPANY_DEFAULT
@@ -131,7 +143,7 @@ def build_card(template, folder, photo, data):
     if 'og:image:width' not in s:
         s = s.replace(f'<meta property="og:image" content="{html.escape(og_url)}">', f'<meta property="og:image" content="{html.escape(og_url)}">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="600">')
 
-    s = s.replace('<body>', f'<body data-static-card="true" data-profile-name="{html.escape(name)}" data-kakao-channel-id="{html.escape(kakao_channel_id)}">', 1)
+    s = s.replace('<body>', f'<body data-static-card="true" data-profile-name="{html.escape(name)}" data-kakao-chat-url="{html.escape(kakao_chat_url)}">', 1)
     s = s.replace('href="./style.css"', 'href="../../style.css"')
     s = s.replace('src="./script.js"', 'src="../../script.js"')
 
@@ -146,13 +158,26 @@ def build_card(template, folder, photo, data):
     s = replace_id_text(s, 'profileName', html.escape(name))
     s = re.sub(r'<p class="position" id="profilePosition">.*?</p>', f'<p class="position" id="profilePosition">{html.escape(department)} <span class="divider">|</span> {html.escape(position)}</p>', s, count=1, flags=re.S)
     s = replace_id_text(s, 'profileCompany', html.escape(company))
-    s = replace_id_text(s, 'phoneText', html.escape(phone))
+    s = replace_id_text(s, 'phoneText', html.escape(format_phone_display(phone)))
     s = replace_id_text(s, 'emailText', html.escape(email))
     s = replace_id_text(s, 'affiliationText', html.escape(department))
 
-    s = re.sub(r'(<a class="contact-card contact-card--call" id="callLink" href=")[^"]*(")', rf'\1tel:{phone_clean}\2', s, count=1)
-    s = re.sub(r'(<a class="contact-card contact-card--sms" id="smsLink" href=")[^"]*(")', rf'\1sms:{phone_clean}\2', s, count=1)
-    s = re.sub(r'(<a id="phoneText" href=")[^"]*(")', rf'\1tel:{phone_clean}\2', s, count=1)
+    if phone_clean:
+        s = re.sub(r'(<a class="contact-card contact-card--call" id="callLink" href=")[^"]*(")', rf'\1tel:{phone_clean}\2', s, count=1)
+        s = re.sub(r'(<a class="contact-card contact-card--sms" id="smsLink" href=")[^"]*(")', rf'\1sms:{phone_clean}\2', s, count=1)
+        s = re.sub(r'(<a id="phoneText" href=")[^"]*(")', rf'\1tel:{phone_clean}\2', s, count=1)
+    else:
+        # phone is optional: remove phone-only controls from generated static card.
+        s = re.sub(r'\s*<a class="contact-card contact-card--call" id="callLink".*?</a>', '', s, count=1, flags=re.S)
+        s = re.sub(r'\s*<a class="contact-card contact-card--sms" id="smsLink".*?</a>', '', s, count=1, flags=re.S)
+        s = re.sub(
+            r'\s*<div>\s*<dt>연락처</dt>\s*<dd><a id="phoneText".*?</a></dd>\s*</div>',
+            '',
+            s,
+            count=1,
+            flags=re.S
+        )
+
     s = re.sub(r'(<a id="emailText" href=")[^"]*(")', rf'\1mailto:{html.escape(email)}\2', s, count=1)
 
     return s, page_url

@@ -42,11 +42,27 @@ function setMeta(property, value) {
   if (meta && value) meta.setAttribute('content', value);
 }
 
+
+function formatPhoneNumber(value) {
+  const digits = String(value || '').replace(/\D/g, '');
+
+  if (/^01[016789]\d{7,8}$/.test(digits)) {
+    if (digits.length === 10) {
+      return digits.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+    }
+    if (digits.length === 11) {
+      return digits.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+    }
+  }
+
+  return value || '';
+}
+
 async function loadProfile() {
   if (document.body.dataset.staticCard === 'true') {
     window.currentProfileData = {
       name: document.body.dataset.profileName || '',
-      kakaoChannelId: document.body.dataset.kakaoChannelId || '',
+      kakaoChatUrl: document.body.dataset.kakaoChatUrl || '',
       siteName: document.title
     };
     return;
@@ -68,8 +84,9 @@ async function loadProfile() {
 
     const name = data.name || profileName;
     const phone = data.phone || '';
+    const phoneValue = phone.replace(/\D/g, '');
     const email = data.email || '';
-    const kakaoChannelId = data.kakaoChannelId || '';
+    const kakaoChatUrl = data.kakaoChatUrl || '';
     const department = data.department || '';
     const position = data.position || '';
     const company = data.company || COMPANY_NAME;
@@ -119,12 +136,23 @@ async function loadProfile() {
     const emailText = document.getElementById('emailText');
     const affiliationText = document.getElementById('affiliationText');
 
-    if (callLink && phoneValue) callLink.href = `tel:${phoneValue}`;
-    if (smsLink && phoneValue) smsLink.href = `sms:${phoneValue}`;
+    if (phoneValue) {
+      if (callLink) callLink.href = `tel:${phoneValue}`;
+      if (smsLink) smsLink.href = `sms:${phoneValue}`;
 
-    if (phoneText) {
-      phoneText.textContent = phone;
-      if (phoneValue) phoneText.href = `tel:${phoneValue}`;
+      if (phoneText) {
+        phoneText.textContent = formatPhoneNumber(phone);
+        phoneText.href = `tel:${phoneValue}`;
+      }
+    } else {
+      // phone= is optional. If omitted/blank, hide phone-only UI.
+      if (callLink) callLink.hidden = true;
+      if (smsLink) smsLink.hidden = true;
+
+      if (phoneText) {
+        const phoneRow = phoneText.closest('div');
+        if (phoneRow) phoneRow.hidden = true;
+      }
     }
 
     if (emailText) {
@@ -148,7 +176,7 @@ async function loadProfile() {
       name,
       phone,
       email,
-      kakaoId,
+      kakaoChatUrl,
       department,
       position,
       company,
@@ -166,27 +194,6 @@ async function loadProfile() {
   }
 }
 
-function initKakaoSdk() {
-  const key = (window.AUTOGENIE_CONFIG && window.AUTOGENIE_CONFIG.kakaoJavaScriptKey || '').trim();
-
-  if (!key) {
-    return { ok: false, reason: 'key' };
-  }
-
-  if (!window.Kakao) {
-    return { ok: false, reason: 'sdk' };
-  }
-
-  try {
-    if (!Kakao.isInitialized()) {
-      Kakao.init(key);
-    }
-    return { ok: Kakao.isInitialized(), reason: Kakao.isInitialized() ? '' : 'init' };
-  } catch (error) {
-    console.error('Kakao SDK init error:', error);
-    return { ok: false, reason: 'init' };
-  }
-}
 
 document.addEventListener('DOMContentLoaded', async () => {
   await loadProfile();
@@ -196,33 +203,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (kakaoBtn) {
     kakaoBtn.addEventListener('click', () => {
       const profile = window.currentProfileData || {};
-      const channelPublicId = (profile.kakaoChannelId || '').trim();
+      const kakaoChatUrl = (profile.kakaoChatUrl || '').trim();
 
-      if (!channelPublicId) {
-        showToast('카카오톡 채널 ID가 등록되지 않았습니다.');
-        alert('profile.txt에 kakaoChannelId를 입력해 주세요.');
+      if (!kakaoChatUrl) {
+        showToast('등록된 카카오톡 상담 링크가 없습니다.');
+        alert('profile.txt에 kakaoChatUrl을 입력해 주세요.');
         return;
       }
 
-      const status = initKakaoSdk();
-
-      if (!status.ok) {
-        if (status.reason === 'key') {
-          alert('config.js에 카카오 JavaScript 키를 입력해 주세요.');
-        } else {
-          alert('카카오톡 SDK를 불러오지 못했습니다. 도메인 등록과 JavaScript 키를 확인해 주세요.');
-        }
-        return;
-      }
-
-      try {
-        Kakao.Channel.chat({
-          channelPublicId
-        });
-      } catch (error) {
-        console.error('Kakao channel chat error:', error);
-        alert('카카오톡 채팅 연결에 실패했습니다. 채널 Public ID와 카카오 개발자 설정을 확인해 주세요.');
-      }
+      window.location.href = kakaoChatUrl;
     });
   }
 });
