@@ -1,7 +1,7 @@
 :root {
     --navy: #082a56;
     --navy2: #123d74;
-    --blue: #2378ff;
+    --blue: #2553d8;
     --text: #111b30;
     --muted: #727f94;
     --line: #e8edf4;
@@ -44,143 +44,83 @@ button {
     box-shadow: 0 24px 70px rgba(20, 38, 68, 0.13);
 }
 
-.hero {
-    position: relative;
-    height: 252px;
-    overflow: hidden;
-    background:
-        radial-gradient(
-            circle at 82% 24%,
-            rgba(80, 150, 220, 0.35),
-            transparent 25%
-        ),
-        linear-gradient(135deg, #071f41 0%, #0d3566 58%, #1e588c 100%);
-}
-.hero:before {
-    content: "";
-    position: absolute;
-    right: -50px;
-    bottom: -60px;
-    width: 330px;
-    height: 210px;
-    border-radius: 55% 45% 0 0;
-    background: linear-gradient(
-        145deg,
-        rgba(255, 255, 255, 0.08),
-        rgba(255, 255, 255, 0)
-    );
-    transform: rotate(-8deg);
-}
-.hero:after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -1px;
-    height: 66px;
-    background: #fff;
-}
-.brand {
-    position: absolute;
-    top: 34px;
-    left: 24px;
-    color: #fff;
-}
-.brand strong {
-    display: block;
-    font-size: 27px;
-    font-style: italic;
-    letter-spacing: 0.02em;
-}
-.brand small {
-    display: block;
-    margin-top: 6px;
-    font-size: 13px;
-    opacity: 0.9;
-}
-.hero-copy {
-    position: absolute;
-    top: 112px;
-    left: 24px;
-    color: #fff;
-}
-.hero-copy span {
-    display: block;
-    font-size: 14px;
-    opacity: 0.72;
-}
-.hero-copy strong {
-    display: block;
-    margin-top: 6px;
-    font-size: 22px;
-    line-height: 1.35;
-}
-
+/* 상단 프로필 - 카카오톡 공유 이미지와 같은 단순 카드형 */
 .profile {
-    position: relative;
-    z-index: 2;
-    margin-top: -86px;
-    padding: 0 22px 26px;
+    padding: 24px 24px 20px;
+    background: var(--blue);
+    color: #fff;
 }
 .profile__top {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 14px;
 }
 .avatar {
-    width: 132px;
-    height: 132px;
-    flex: 0 0 132px;
+    width: 80px;
+    height: 80px;
+    flex: 0 0 80px;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    object-position: center;
+    object-position: center center;
     border-radius: 50%;
-    border: 6px solid #fff;
-    background: #eef2f7;
-    box-shadow: 0 12px 28px rgba(24, 45, 77, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.92);
+    background: #fff;
+    overflow: hidden;
 }
 .profile__heading {
     min-width: 0;
-    margin-top: 40px;
-}
-.eyebrow {
-    display: block;
-    color: #87a0bd;
-    letter-spacing: 0.26em;
-    font-size: 11px;
-    font-weight: 800;
-    margin-bottom: 7px;
 }
 h1 {
     margin: 0;
-    font-size: 31px;
+    font-size: 21px;
     line-height: 1.15;
-    font-weight: 850;
-}
-h1 em {
-    margin-left: 7px;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 650;
-    color: #536178;
-}
-.team {
-    margin: 7px 0 0;
-    font-size: 15px;
     font-weight: 700;
-    color: #35445a;
 }
-.intro {
-    margin: 13px 0 0;
+.position,
+.company {
+    margin: 5px 0 0;
     font-size: 14px;
-    line-height: 1.65;
-    color: var(--muted);
+    line-height: 1.25;
+    font-weight: 600;
+}
+.position .divider {
+    display: inline-block;
+    margin: 0 4px;
+    opacity: 0.78;
+}
+.company {
+    margin-top: 4px;
+}
+.profile__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+.profile__tags span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.18);
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* 프로필과 상담 버튼 영역을 완전히 분리해 데스크톱 모바일 미리보기의 경계선 제거 */
+.contact-wrap {
+    padding: 20px 22px;
+    background: #fff;
+    border: 0;
 }
 
 .contact-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    margin-top: 23px;
 }
 .contact-card {
     min-height: 116px;
@@ -344,51 +284,6 @@ footer p {
     transform: translate(-50%, 0);
 }
 
-@media (min-width: 700px) {
-    body {
-        padding: 36px 0;
-    }
-    .card-page {
-        border-radius: 28px;
-        overflow: hidden;
-    }
-}
-@media (max-width: 390px) {
-    .profile__top {
-        gap: 14px;
-    }
-    .avatar {
-        width: 96px;
-        height: 96px;
-        flex-basis: 96px;
-    }
-    h1 {
-        font-size: 26px;
-    }
-    h1 em {
-        font-size: 14px;
-    }
-    .intro {
-        font-size: 13px;
-    }
-    .contact-grid {
-        gap: 8px;
-    }
-    .contact-card {
-        min-height: 108px;
-    }
-    .contact-card strong {
-        font-size: 13px;
-    }
-    .qr-section {
-        padding: 16px;
-    }
-    .qr-section img {
-        width: 92px;
-        height: 92px;
-    }
-}
-
 .company-copy {
     margin: 30px -22px 0;
     padding: 30px 22px 0;
@@ -447,7 +342,8 @@ footer p {
     content: counter(service, decimal-leading-zero);
     position: absolute;
     left: 15px;
-    top: 27px;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--navy);
     font-size: 14px;
     font-weight: 850;
@@ -462,11 +358,60 @@ footer p {
     line-height: 1.75 !important;
 }
 
-/* Square ID photo source, displayed inside circular profile frame */
-.avatar {
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    object-position: center center;
-    border-radius: 50%;
-    overflow: hidden;
+@media (min-width: 700px) {
+    body {
+        padding: 36px 0;
+    }
+    .card-page {
+        border-radius: 28px;
+        overflow: hidden;
+    }
+}
+@media (max-width: 390px) {
+    .profile {
+        padding: 22px 18px 20px;
+    }
+    .profile__top {
+        gap: 16px;
+    }
+    .avatar {
+        width: 82px;
+        height: 82px;
+        flex: 0 0 82px;
+    }
+    h1 {
+        font-size: 20px;
+    }
+    .position,
+    .company {
+        font-size: 13px;
+    }
+    .profile__tags {
+        gap: 7px;
+        margin-top: 14px;
+    }
+    .profile__tags span {
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+    .contact-wrap {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+    .contact-grid {
+        gap: 8px;
+    }
+    .contact-card {
+        min-height: 108px;
+    }
+    .contact-card strong {
+        font-size: 13px;
+    }
+    .qr-section {
+        padding: 16px;
+    }
+    .qr-section img {
+        width: 92px;
+        height: 92px;
+    }
 }
