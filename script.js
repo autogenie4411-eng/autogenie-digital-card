@@ -204,6 +204,12 @@ function isKakaoOpenChatUrl(url = '') {
   }
 }
 
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', async () => {
   await loadProfile();
 

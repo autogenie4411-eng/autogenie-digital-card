@@ -15,9 +15,56 @@
   <meta property="og:image:height" content="600">
   <meta property="og:image:alt" content="오토지니 박민우 디지털 명함">
 
-  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="../../style.css?v=20260930-entry5">
+
+  <style id="entry-animation-critical">
+    html.entry-lock body { overflow-x: hidden; }
+    html.entry-lock .card-page {
+      opacity: 0 !important;
+      transform: translate3d(0, 110px, 0) !important;
+      transition: none !important;
+      will-change: transform, opacity;
+    }
+    html.entry-play .card-page {
+      opacity: 1 !important;
+      transform: translate3d(0, 0, 0) !important;
+      transition:
+        opacity .52s ease-out,
+        transform .78s cubic-bezier(.22,1,.36,1) !important;
+    }
+    @media (max-width: 767px) {
+      html.entry-lock .card-page { transform: translate3d(0, 92px, 0) !important; }
+      html.entry-play .card-page {
+        transition:
+          opacity .50s ease-out,
+          transform .72s cubic-bezier(.22,1,.36,1) !important;
+      }
+    }
+  </style>
+  <script id="entry-animation-bootstrap">
+  (function () {
+    var root = document.documentElement;
+    root.classList.add('entry-lock');
+
+    function playEntry() {
+      if (root.classList.contains('entry-play')) return;
+      window.setTimeout(function () {
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            root.classList.remove('entry-lock');
+            root.classList.add('entry-play');
+          });
+        });
+      }, 220);
+    }
+
+    window.addEventListener('load', playEntry, { once: true });
+    window.addEventListener('pageshow', playEntry, { once: true });
+    window.setTimeout(playEntry, 900);
+  })();
+  </script>
 </head>
-<body data-static-card="true" data-profile-name="박민우" data-kakao-chat-url="https://pf.kakao.com/_xbkxkGn/chat">
+<body data-static-card="true" data-profile-name="박민우" data-kakao-chat-url="https://pf.kakao.com/_xbkxkGn/chat" >
   <main class="card-page">
     <section class="profile">
       <div class="profile__top">
@@ -146,6 +193,6 @@
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </main>
-  <script src="../../script.js?v=20260930-openchat2"></script>
+  <script src="../../script.js?v=20260930-entry5"></script>
 </body>
 </html>
