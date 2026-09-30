@@ -149,6 +149,11 @@ def build_card(template, folder, photo, data):
     s = s.replace('href="./style.css?v=20260930-entry5"', 'href="../../style.css?v=20260930-entry5"')
     s = s.replace('src="./script.js?v=20260930-entry5"', 'src="../../script.js?v=20260930-entry5"')
 
+    s = s.replace('href="./favicon/autogenie-navy-48.png"', 'href="../../favicon/autogenie-navy-48.png"')
+    s = s.replace('href="./favicon/autogenie-navy-180.png"', 'href="../../favicon/autogenie-navy-180.png"')
+    s = s.replace('href="./favicon/autogenie-navy-16.png"', 'href="../../favicon/autogenie-navy-16.png"')
+    s = s.replace('href="./favicon/autogenie-navy-32.png"', 'href="../../favicon/autogenie-navy-32.png"')
+
     # profile image
     s = re.sub(
         r'(<img class="avatar" id="profilePhoto" )src="[^"]*" alt="[^"]*">',
