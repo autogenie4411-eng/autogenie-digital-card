@@ -195,21 +195,12 @@ async function loadProfile() {
 
 
 
-function extractKakaoChannelId(chatUrl = '') {
-  const value = String(chatUrl || '').trim();
-  const match = value.match(/pf\.kakao\.com\/([^/?#]+)/i);
-  return match ? decodeURIComponent(match[1]) : '';
-}
-
-function initKakaoSdk() {
-  const key = String(window.AUTOGENIE_KAKAO?.javascriptKey || '').trim();
-  if (!key || !window.Kakao) return false;
+function isKakaoOpenChatUrl(url = '') {
   try {
-    if (!Kakao.isInitialized()) Kakao.init(key);
-    return Kakao.isInitialized();
+    const parsed = new URL(url, window.location.href);
+    return parsed.hostname === 'open.kakao.com';
   } catch (error) {
-    console.error('Kakao SDK init failed:', error);
-    return false;
+    return String(url || '').includes('open.kakao.com');
   }
 }
 
@@ -217,23 +208,32 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadProfile();
 
   const kakaoBtn = document.getElementById('kakaoBtn');
+
   if (kakaoBtn) {
     kakaoBtn.addEventListener('click', () => {
-      const kakaoChatUrl = (window.currentProfileData?.kakaoChatUrl || '').trim();
+      const profile = window.currentProfileData || {};
+      const kakaoChatUrl = (profile.kakaoChatUrl || '').trim();
+
       if (!kakaoChatUrl) {
         showToast('등록된 카카오톡 상담 링크가 없습니다.');
+        alert('profile.txt에 kakaoChatUrl을 입력해 주세요.');
         return;
       }
-      const channelPublicId = extractKakaoChannelId(kakaoChatUrl);
-      if (channelPublicId && initKakaoSdk()) {
-        try {
-          Kakao.Channel.chat({ channelPublicId });
-          return;
-        } catch (error) {
-          console.error('Kakao.Channel.chat failed:', error);
-        }
-      }
+
       window.location.href = kakaoChatUrl;
     });
   }
 });
+
+
+document.addEventListener('click', (event) => {
+  const button = event.target.closest('#kakaoBtn');
+  if (!button) return;
+
+  const kakaoChatUrl = (window.currentProfileData?.kakaoChatUrl || '').trim();
+  if (!kakaoChatUrl || !isKakaoOpenChatUrl(kakaoChatUrl)) return;
+
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  window.location.assign(kakaoChatUrl);
+}, true);
