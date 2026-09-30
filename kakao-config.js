@@ -1,0 +1,4 @@
+// Kakao Developers > 내 애플리케이션 > 앱 키 > JavaScript 키
+window.AUTOGENIE_KAKAO = {
+  javascriptKey: ""
+};

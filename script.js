@@ -194,22 +194,45 @@ async function loadProfile() {
 }
 
 
+
+function extractKakaoChannelId(chatUrl = '') {
+  const value = String(chatUrl || '').trim();
+  const match = value.match(/pf\.kakao\.com\/([^/?#]+)/i);
+  return match ? decodeURIComponent(match[1]) : '';
+}
+
+function initKakaoSdk() {
+  const key = String(window.AUTOGENIE_KAKAO?.javascriptKey || '').trim();
+  if (!key || !window.Kakao) return false;
+  try {
+    if (!Kakao.isInitialized()) Kakao.init(key);
+    return Kakao.isInitialized();
+  } catch (error) {
+    console.error('Kakao SDK init failed:', error);
+    return false;
+  }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   await loadProfile();
 
   const kakaoBtn = document.getElementById('kakaoBtn');
-
   if (kakaoBtn) {
     kakaoBtn.addEventListener('click', () => {
-      const profile = window.currentProfileData || {};
-      const kakaoChatUrl = (profile.kakaoChatUrl || '').trim();
-
+      const kakaoChatUrl = (window.currentProfileData?.kakaoChatUrl || '').trim();
       if (!kakaoChatUrl) {
         showToast('등록된 카카오톡 상담 링크가 없습니다.');
-        alert('profile.txt에 kakaoChatUrl을 입력해 주세요.');
         return;
       }
-
+      const channelPublicId = extractKakaoChannelId(kakaoChatUrl);
+      if (channelPublicId && initKakaoSdk()) {
+        try {
+          Kakao.Channel.chat({ channelPublicId });
+          return;
+        } catch (error) {
+          console.error('Kakao.Channel.chat failed:', error);
+        }
+      }
       window.location.href = kakaoChatUrl;
     });
   }

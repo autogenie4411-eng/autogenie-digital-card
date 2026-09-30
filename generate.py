@@ -144,7 +144,9 @@ def build_card(template, folder, photo, data):
 
     s = s.replace('<body>', f'<body data-static-card="true" data-profile-name="{html.escape(name)}" data-kakao-chat-url="{html.escape(kakao_chat_url)}">', 1)
     s = s.replace('href="./style.css"', 'href="../../style.css"')
-    s = s.replace('src="./script.js?v=20260929-4"', 'src="../../script.js?v=20260929-4"')
+    s = s.replace('src="./script.js?v=20260929-4"', 'src="../../script.js?v=20260930-kakao1"')
+
+    s = s.replace('src="./kakao-config.js"', 'src="../../kakao-config.js"')
 
     # profile image
     s = re.sub(
