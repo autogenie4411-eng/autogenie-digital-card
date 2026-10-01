@@ -1,0 +1,9 @@
+name=박영훈
+phone=010-4025-1278
+email=dudgns5899@naver.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/s9uvs5Pi
+siteName=박영훈 차장 | 오토지니
+photo=./sales_profiles/박영훈/박영훈.png
+

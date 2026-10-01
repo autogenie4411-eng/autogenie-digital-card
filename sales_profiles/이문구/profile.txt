@@ -1,0 +1,9 @@
+name=이문구
+phone=010-4527-7711
+email=ansrn471@naver.com
+department=영업부
+position=팀장
+kakaoChatUrl=https://open.kakao.com/o/syamx5Pi
+siteName=이문구 팀장 | 오토지니
+photo=./sales_profiles/이문구/이문구.png
+

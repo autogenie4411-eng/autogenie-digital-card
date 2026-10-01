@@ -1,0 +1,11 @@
+name=이준희
+phone=010-4826-8866
+email=ljunhee0914@naver.com
+department=영업부
+position=차장 
+kakaoChatUrl=https://open.kakao.com/o/sGNnr7Pi
+siteName=이준희 차장 | 오토지니 
+photo=./sales_profiles/이준희/이준희.png
+
+
+

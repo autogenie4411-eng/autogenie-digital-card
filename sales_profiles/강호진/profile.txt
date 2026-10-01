@@ -1,0 +1,8 @@
+name=강호진
+phone=010-4181-9480
+email=hojinkangfreedom@gmail.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/suWUn6Pi
+siteName=강호진 차장 | 오토지니
+photo=./sales_profiles/강호진/강호진.png

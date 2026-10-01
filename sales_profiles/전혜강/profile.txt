@@ -1,0 +1,9 @@
+name=전혜강
+phone=010-4121-7711
+email=wjsgprkd1234@naver.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/sEXAGeQi
+siteName=전혜강 차장 | 오토지니
+photo=./sales_profiles/전혜강/전혜강.png
+

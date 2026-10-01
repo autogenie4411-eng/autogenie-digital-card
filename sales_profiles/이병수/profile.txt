@@ -1,0 +1,8 @@
+name=이병수
+phone=010-2191-1289
+email=great2377@naver.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/sGO7j6Pi
+siteName=이병수 차장 | 오토지니
+photo=./sales_profiles/이병수/이병수.png

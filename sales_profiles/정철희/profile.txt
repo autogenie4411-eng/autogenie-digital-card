@@ -1,0 +1,9 @@
+name=정철희
+phone=010-9453-7722
+cheolhee1623@naver.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/s2gCVeQi
+siteName=정철희 차장 | 오토지니
+photo=./sales_profiles/정철희/정철희.png
+

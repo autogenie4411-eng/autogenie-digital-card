@@ -1,0 +1,9 @@
+name=김형원
+phone=010-3758-8765
+email=zerogravity77@naver.com
+department=영업부
+position=팀장
+kakaoChatUrl= https://open.kakao.com/o/ssphv5Pi
+siteName=김형원 팀장 | 오토지니
+photo=./sales_profiles/김형원/김형원.png
+

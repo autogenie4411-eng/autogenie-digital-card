@@ -1,0 +1,9 @@
+name=강규현
+phone=010-4921-1469
+email=kkh780800@gmail.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/so22s5Pi
+siteName=강규현 차장 | 오토지니
+photo=./sales_profiles/강규현/강규현.png
+

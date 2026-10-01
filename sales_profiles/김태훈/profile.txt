@@ -1,0 +1,9 @@
+name=김태훈
+phone=010-8985-7710
+email=HELPMEDOG2@NAVER.COM
+department=영업부
+position=팀장
+kakaoChatUrl=https://open.kakao.com/o/sOaQq5Pi
+siteName=김태훈 팀장 | 오토지니
+photo=./sales_profiles/김태훈/김태훈.png
+

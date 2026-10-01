@@ -1,0 +1,9 @@
+name=김진욱
+phone=010-5858-2807
+email=otjim@naver.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/sDZgr7Pi
+siteName=김진욱 차장 | 오토지니
+photo=./sales_profiles/김진욱/김진욱.png
+

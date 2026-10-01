@@ -1,0 +1,8 @@
+name=정원상
+phone=010-5786-7716
+email=hbkdhkh@naver.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/srsgXeQi
+siteName=정원상 차장 | 오토지니
+photo=./sales_profiles/정원상/정원상.png

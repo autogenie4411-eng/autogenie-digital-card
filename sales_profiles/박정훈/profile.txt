@@ -1,0 +1,8 @@
+name=박정훈
+phone=010-9105-0308
+email=jh2143721@naver.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/sTXir7Pi
+siteName=박정훈 차장 | 오토지니
+photo=./sales_profiles/박정훈/박정훈.png

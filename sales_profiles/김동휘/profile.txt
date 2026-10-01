@@ -1,0 +1,8 @@
+name=김동휘
+phone=010-9186-7710
+email=ehdgnl8911@naver.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/sp5nWeQi
+siteName=김동휘 차장 | 오토지니
+photo=./sales_profiles/김동휘/김동휘.png

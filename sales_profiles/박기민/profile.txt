@@ -1,0 +1,9 @@
+name=박기민
+phone=010-9360-5836
+email=wnsahdua1234@naver.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/sVtss5Pi
+siteName=박기민 차장 | 오토지니
+photo=./sales_profiles/박기민/박기민.png
+

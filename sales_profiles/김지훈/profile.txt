@@ -1,0 +1,8 @@
+name=김지훈
+phone=010-9917-7710
+email=rlawlgns0225@naver.com
+department=영업부
+position=과장
+kakaoChatUrl=https://open.kakao.com/o/soiIs5Pi
+siteName=김지훈 과장 | 오토지니
+photo=./sales_profiles/김지훈/김지훈.png

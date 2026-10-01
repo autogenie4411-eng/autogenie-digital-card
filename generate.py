@@ -12,6 +12,7 @@ COMPANY_DEFAULT = '주식회사 오토지니'
 
 OG_W, OG_H = 1200, 600
 OG_BG = '#2B57D9'
+OG_BG_IMAGE = BASE / 'images' / 'bg.png'
 
 
 def parse_profile(path: Path):
@@ -61,7 +62,19 @@ def resolve_photo(folder: Path, data, name):
 
 
 def make_og(photo_path, name, department, position, company, out_path):
-    canvas = Image.new('RGB', (OG_W, OG_H), OG_BG)
+    # 디지털 명함 상단에서 사용하는 자동차 배경을 OG 이미지에도 동일하게 사용합니다.
+    # 원본 비율을 유지한 채 1200x600 영역을 꽉 채우도록 중앙 크롭합니다.
+    if OG_BG_IMAGE.exists():
+        bg = Image.open(OG_BG_IMAGE).convert('RGB')
+        canvas = ImageOps.fit(
+            bg,
+            (OG_W, OG_H),
+            method=Image.Resampling.LANCZOS,
+            centering=(0.5, 0.5),
+        )
+    else:
+        canvas = Image.new('RGB', (OG_W, OG_H), OG_BG)
+
     draw = ImageDraw.Draw(canvas)
 
     # 카톡 축소 시에도 잘 보이도록 큰 글씨 + Bold

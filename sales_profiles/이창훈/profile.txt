@@ -1,0 +1,8 @@
+name=이창훈
+phone=010-2901-7710
+email=automan831@naver.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/sQSDXeQi
+siteName=이창훈 차장 | 오토지니
+photo=./sales_profiles/이창훈/이창훈.png

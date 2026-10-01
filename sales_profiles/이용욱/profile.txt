@@ -1,0 +1,8 @@
+name=이용욱
+phone=010-5380-5836
+email=rltkdyddyddl@naver.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/suZCZeQi
+siteName=이용욱 차장 | 오토지니
+photo=./sales_profiles/이용욱/이용욱.png

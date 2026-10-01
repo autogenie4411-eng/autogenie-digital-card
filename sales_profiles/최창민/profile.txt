@@ -1,0 +1,9 @@
+name=최창민
+phone=010-2396-7718
+email=ww5w34@naver.com
+department=영업부
+position=차장
+https://open.kakao.com/o/s1Rkr7Pi
+siteName=최창민 차장 | 오토지니
+photo=./sales_profiles/최창민/최창민.png
+
