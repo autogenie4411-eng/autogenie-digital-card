@@ -3,6 +3,6 @@ phone=010-3191-9933
 email=rlawkdgus66@naver.com
 department=영업부
 position=차장
-kakaoChatUrl=https://open.kakao.com/o/geiNXeQi
+kakaoChatUrl=https://open.kakao.com/o/sHvD0fQi
 siteName=김장현 차장 | 오토지니
 photo=./sales_profiles/김장현/김장현.png
