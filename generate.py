@@ -155,7 +155,13 @@ def build_card(template, folder, photo, data):
     if 'og:image:width' not in s:
         s = s.replace(f'<meta property="og:image" content="{html.escape(og_url)}">', f'<meta property="og:image" content="{html.escape(og_url)}">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="600">')
 
-    s = s.replace('<body>', f'<body class="page-enter" data-static-card="true" data-profile-name="{html.escape(name)}" data-kakao-chat-url="{html.escape(kakao_chat_url)}">', 1)
+    s = re.sub(
+        r'<body\b[^>]*>',
+        f'<body class="page-enter" data-static-card="true" data-profile-name="{html.escape(name)}" data-kakao-chat-url="{html.escape(kakao_chat_url)}">',
+        s,
+        count=1,
+        flags=re.IGNORECASE,
+    )
     s = s.replace('href="./style.css"', 'href="../../style.css?v=20260930-entry5"')
     s = re.sub(r'src="(?:\./|\.\./\.\./)script\.js(?:\?v=[^"]*)?"', 'src="../../script.js?v=20260930-entry5"', s)
 
