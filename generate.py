@@ -7,7 +7,7 @@ SALES = BASE / 'sales_profiles'
 CARDS = BASE / 'cards'
 OG = BASE / 'og'
 TEMPLATE = BASE / 'index.html'
-BASE_URL = 'https://eunnn-h2.github.io/autogenie-digital-card'
+BASE_URL = 'https://sales.agautoplan.com'
 COMPANY_DEFAULT = '주식회사 오토지니'
 
 OG_W, OG_H = 1200, 600
@@ -136,7 +136,9 @@ def build_card(template, folder, photo, data):
 
     enc_name = urllib.parse.quote(name)
     enc_photo = urllib.parse.quote(photo.name)
-    page_url = f'{BASE_URL}/cards/{enc_name}/'
+    # 직원별 링크 파일과 공유 URL에는 한글 이름을 그대로 표시한다.
+    # 실제 HTTP 요청 시 브라우저가 필요한 경우 자동으로 URL 인코딩한다.
+    page_url = f'{BASE_URL}/cards/{name}/'
     og_url = f'{BASE_URL}/og/{urllib.parse.quote(name + "_og.png")}'
 
     s = template
@@ -155,13 +157,7 @@ def build_card(template, folder, photo, data):
     if 'og:image:width' not in s:
         s = s.replace(f'<meta property="og:image" content="{html.escape(og_url)}">', f'<meta property="og:image" content="{html.escape(og_url)}">\n  <meta property="og:image:width" content="1200">\n  <meta property="og:image:height" content="600">')
 
-    s = re.sub(
-        r'<body\b[^>]*>',
-        f'<body class="page-enter" data-static-card="true" data-profile-name="{html.escape(name)}" data-kakao-chat-url="{html.escape(kakao_chat_url)}">',
-        s,
-        count=1,
-        flags=re.IGNORECASE,
-    )
+    s = re.sub(r'<body\b[^>]*>', f'<body class="page-enter" data-static-card="true" data-profile-name="{html.escape(name)}" data-kakao-chat-url="{html.escape(kakao_chat_url)}">', s, count=1, flags=re.I)
     s = s.replace('href="./style.css"', 'href="../../style.css?v=20260930-entry5"')
     s = re.sub(r'src="(?:\./|\.\./\.\./)script\.js(?:\?v=[^"]*)?"', 'src="../../script.js?v=20260930-entry5"', s)
 
