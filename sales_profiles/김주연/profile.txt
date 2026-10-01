@@ -1,0 +1,8 @@
+name=김주연
+phone=010-2985-4765
+email=kimjuyoun5074@gmail.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/s7PHbfQi
+siteName=김주연 차장 | 오토지니
+photo=./sales_profiles/김주연/김주연.png

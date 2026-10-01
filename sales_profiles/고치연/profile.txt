@@ -1,0 +1,8 @@
+name=고치연
+phone=010-5294-9562
+email=gochiyeon6@gmail.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/s2V0hfQi
+siteName=고치연 차장 | 오토지니
+photo=./sales_profiles/고치연/고치연.png

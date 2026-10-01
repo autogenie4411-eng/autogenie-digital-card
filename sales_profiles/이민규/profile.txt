@@ -1,0 +1,13 @@
+name=이민규
+phone=010-2257-7337
+email=kmks0416@naver.com
+department=영업부
+position=팀장
+kakaoChatUrl=https://open.kakao.com/o/sZNcbfQi
+siteName=이민규 팀장 | 오토지니
+photo=./sales_profiles/이민규/이민규.png
+
+
+
+
+
