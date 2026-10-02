@@ -1,9 +1,9 @@
-name=박이준
+name=박지석
 phone=010-5885-7701
 email=qordlthd92@naver.com
 department=영업부
 position=팀장
 kakaoChatUrl=https://open.kakao.com/o/sJyhC5Pi
-siteName=박이준 팀장 | 오토지니
-photo=./sales_profiles/박이준/박이준.png
+siteName=박지석 팀장 | 오토지니
+photo=./sales_profiles/박지석/박지석.png
 

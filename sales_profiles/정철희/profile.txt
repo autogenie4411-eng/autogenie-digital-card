@@ -1,6 +1,6 @@
 name=정철희
 phone=010-9453-7722
-cheolhee1623@naver.com
+email=cheolhee1623@naver.com
 department=영업부
 position=차장
 kakaoChatUrl=https://open.kakao.com/o/s2gCVeQi
