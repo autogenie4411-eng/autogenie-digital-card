@@ -169,6 +169,10 @@ def build_card(template, folder, photo, data):
     s = s.replace('href="./favicon/autogenie-navy-16.png"', 'href="../../favicon/autogenie-navy-16.png"')
     s = s.replace('href="./favicon/autogenie-navy-32.png"', 'href="../../favicon/autogenie-navy-32.png"')
 
+    # 회사소개 연결과 스타일 경로를 직원별 명함 위치에 맞춥니다.
+    s = re.sub(r'href="(?:\./|\.\./\.\./)style\.css(?:\?v=[^"]*)?"', 'href="../../style.css?v=20261006-footer-unified13"', s, count=1)
+    s = s.replace('href="./company/index.html?from=main"', 'href="../../company/index.html?card=' + enc_name + '"')
+
     # profile image
     s = re.sub(
         r'(<img class="avatar" id="profilePhoto" )src="[^"]*" alt="[^"]*">',
