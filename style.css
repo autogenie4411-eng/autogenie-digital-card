@@ -353,6 +353,55 @@ footer p {
     text-align: left;
 }
 
+
+/* 선택형 담당자 소개 - intro1, intro2...가 있는 직원에게만 노출 */
+.advisor-intro {
+    margin: 26px 0 4px;
+    padding: 22px 20px;
+    border: 1px solid #dfe8f5;
+    border-radius: 18px;
+    background: #f6f9fe;
+}
+.advisor-intro__heading {
+    margin-bottom: 14px;
+}
+.advisor-intro__heading h2 {
+    margin: 5px 0 0;
+    font-size: 19px;
+    line-height: 1.45;
+}
+.advisor-intro__body p {
+    margin: 0 0 12px;
+    color: #5f6d81;
+    font-size: 14px;
+    line-height: 1.85;
+    word-break: keep-all;
+}
+.advisor-intro__body p:last-child {
+    margin-bottom: 0;
+}
+.advisor-intro__body .advisor-intro__hello {
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.65;
+    font-weight: 750;
+}
+.advisor-intro + .info-section {
+    padding-top: 28px;
+}
+
+@media (max-width: 390px) {
+    .advisor-intro {
+        padding: 20px 18px;
+    }
+    .advisor-intro__body p {
+        font-size: 13px;
+    }
+    .advisor-intro__body .advisor-intro__hello {
+        font-size: 15px;
+    }
+}
+
 @media (min-width: 700px) {
     body {
         padding: 36px 0;

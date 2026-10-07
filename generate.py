@@ -170,7 +170,7 @@ def build_card(template, folder, photo, data):
     s = s.replace('href="./favicon/autogenie-navy-32.png"', 'href="../../favicon/autogenie-navy-32.png"')
 
     # 회사소개 연결과 스타일 경로를 직원별 명함 위치에 맞춥니다.
-    s = re.sub(r'href="(?:\./|\.\./\.\./)style\.css(?:\?v=[^"]*)?"', 'href="../../style.css?v=20261006-footer-unified13"', s, count=1)
+    s = re.sub(r'href="(?:\./|\.\./\.\./)style\.css(?:\?v=[^"]*)?"', 'href="../../style.css?v=20261007-advisor-intro2"', s, count=1)
     s = s.replace('href="./company/index.html?from=main"', 'href="../../company/index.html?card=' + enc_name + '"')
 
     # profile image
@@ -187,6 +187,34 @@ def build_card(template, folder, photo, data):
     s = replace_id_text(s, 'phoneText', html.escape(format_phone_display(phone)))
     s = replace_id_text(s, 'emailText', html.escape(email))
     s = replace_id_text(s, 'affiliationText', html.escape(department))
+
+    # 선택 입력: intro1, intro2... 가 있는 직원만 담당자 소개 섹션을 생성합니다.
+    intro_paragraphs = []
+    for i in range(1, 10):
+        value = data.get(f'intro{i}', '').strip()
+        if value:
+            intro_paragraphs.append(value)
+
+    if intro_paragraphs:
+        intro_html = ['''
+      <section class="advisor-intro" aria-labelledby="advisorIntroTitle">
+        <div class="advisor-intro__heading">
+          <h2 id="advisorIntroTitle">담당자 소개</h2>
+        </div>
+        <div class="advisor-intro__body">
+''']
+        for idx, paragraph in enumerate(intro_paragraphs):
+            class_name = ' class="advisor-intro__hello"' if idx == 0 else ''
+            intro_html.append(f'          <p{class_name}>{html.escape(paragraph)}</p>\n')
+        intro_html.append('        </div>\n      </section>\n')
+        intro_html = ''.join(intro_html)
+
+        # 상담 버튼 바로 아래, 담당자 정보 위에 삽입합니다.
+        s = s.replace(
+            '    <section class="content">\n      <section class="info-section">',
+            '    <section class="content">\n' + intro_html + '      <section class="info-section">',
+            1
+        )
 
     if phone_clean:
         s = re.sub(r'(<a class="contact-card contact-card--call" id="callLink" href=")[^"]*(")', rf'\1tel:{phone_clean}\2', s, count=1)
