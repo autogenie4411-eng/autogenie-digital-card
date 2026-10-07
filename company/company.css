@@ -1009,55 +1009,163 @@ h1,h2,h3,p,dl,dd {
 .history { --history-gutter: 1.125rem; }
 .history .section-heading { margin-bottom: 1.5rem; }
 .history .section-heading h2 { color: var(--navy); }
+/* 참고 이미지의 배경과 장식 위에 실제 수상 정보를 HTML 텍스트로 표시 */
 .history-awards {
+  --award-gold: #ffcd40;
   margin-inline: calc(-1 * var(--history-gutter));
-  padding: 1.75rem var(--history-gutter) 1.5rem;
-  background: var(--navy);
+  padding: 0;
+  overflow: hidden;
+  background: #030b38;
   color: #fff;
+  text-align: center;
 }
-.history-awards__year { display: flex; align-items: center; gap: .75rem; color: #ccdaed; font-size: .875rem; }
-.history-awards__year::after { content: ''; width: 1.5rem; height: 1px; background: #b2c7e3; }
-.history-awards h3 { margin: .75rem 0 1rem; font-size: clamp(1.3rem, 4.9vw, 1.65rem); font-weight: 750; line-height: 1.5; letter-spacing: -.04em; }
-.history-awards__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-.history-award { display: flex; align-items: center; justify-content: center; gap: .375rem; min-height: 6rem; padding: .5rem .375rem; text-align: center; }
-.history-award + .history-award { border-left: 1px solid #375578; }
-.history-award__branch { width: 1.125rem; height: 4.5rem; flex: 0 0 1.125rem; color: #9db8d9; pointer-events: none; }
-.history-award__branch--right { transform: scaleX(-1); }
-.history-award__text { min-width: 0; }
-.history-award__text p { font-size: .875rem; font-weight: 650; }
-.history-award__text p::after { content: ''; display: block; width: 1rem; height: 1px; margin: .625rem auto; background: #9db8d9; }
-.history-award__text strong { display: block; font-size: .875rem; font-weight: 700; }
-.history-sales { padding-block: 1.75rem; border-bottom: 1px solid var(--line); }
-.history-sales p { color: var(--muted); font-size: .9375rem; font-weight: 650; }
-.history-sales > strong { display: block; margin-top: .25rem; color: var(--blue); font-size: clamp(2.8rem, 12.5vw, 3.9rem); line-height: 1.25; letter-spacing: -.045em; font-weight: 800; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.history-sales > strong span { margin-left: .1rem; font-size: .62em; font-weight: 750; }
-.history-sales small { display: block; margin-top: .3rem; color: var(--muted); font-size: .8125rem; }
-.history-summary { padding-top: 1.5rem; }
-.history-summary > h3 { color: var(--navy); font-size: 1.25rem; line-height: 1.5; margin: 0; }
-.history-list { list-style: none; margin: 1.25rem 0 0; padding: 0; }
-.history-list li { position: relative; display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 1.5rem; padding-bottom: 1.25rem; }
+.history-awards__stage {
+  position: relative;
+  aspect-ratio: 1491 / 844;
+  background: #061747 url('./images/award-banner-bg.png') center top / 100% auto no-repeat;
+}
+.history-awards__year,
+.history-awards__label {
+  position: absolute;
+  left: 10%;
+  width: 80%;
+  margin: 0;
+  color: var(--award-gold);
+  line-height: 1.3;
+  letter-spacing: -.035em;
+  white-space: nowrap;
+}
+.history-awards__year {
+  top: 28%;
+  font-size: clamp(1rem, 5.1vw, 1.65rem);
+  font-weight: 500;
+}
+.history-awards__label {
+  top: 39%;
+  font-size: clamp(.875rem, 4vw, 1.3rem);
+  font-weight: 500;
+}
+.history-awards h3 {
+  position: absolute;
+  top: 56.5%;
+  left: 12%;
+  width: 76%;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.75rem, 14.5vw, 4.75rem);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -.055em;
+  white-space: nowrap;
+}
+.history-awards__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding: .75rem var(--history-gutter);
+  border-top: 1px solid var(--award-gold);
+  border-bottom: 1px solid var(--award-gold);
+  background: #030b38;
+}
+.history-award { min-width: 0; text-align: center; }
+.history-award + .history-award { border-left: 1px solid rgba(255, 205, 64, .35); }
+.history-award__partner {
+  margin: 0 0 .125rem;
+  color: var(--award-gold);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -.035em;
+}
+.history-award__caption {
+  margin: 0;
+  color: var(--award-gold);
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -.035em;
+  white-space: nowrap;
+}
+.history-award__caption b { color: #ffa425; font-weight: 800; }
+.history-awards__tail {
+  height: clamp(1rem, 4.5vw, 1.5rem);
+  background: #061747 url('./images/award-banner-bg.png') center bottom / 100% auto no-repeat;
+}
+/* 사이트의 숫자 정보와 같은 가로 구성으로 누적 판매를 정돈 */
+.history-sales {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 1rem;
+  padding-block: 1.625rem;
+  border-bottom: 1px solid var(--line);
+}
+.history-sales p {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  color: var(--muted);
+  font-size: .875rem;
+  font-weight: 550;
+  line-height: 1.75;
+  letter-spacing: -.025em;
+}
+.history-sales > strong {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: .25rem;
+  grid-column: 2;
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(2rem, 8vw, 2.5rem);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -.04em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.history-sales > strong span {
+  font-size: .9375rem;
+  font-weight: 550;
+  letter-spacing: 0;
+}
+.history-sales small {
+  display: block;
+  grid-column: 2;
+  margin-top: .375rem;
+  color: #8190a3;
+  font-size: .75rem;
+  line-height: 1.5;
+  text-align: right;
+}
+/* 가볍게 정돈한 연혁: 최신 연도만 강조하고 나머지는 얇은 선으로 연결 */
+.history-summary { padding-top: 1.625rem; }
+.history-summary > h3 { color: var(--navy); font-size: 1.0625rem; font-weight: 650; line-height: 1.5; letter-spacing: -.025em; margin: 0; }
+.history-list { --history-axis: 3.625rem; list-style: none; margin: 1.5rem 0 0; padding: 0; }
+.history-list li { position: relative; display: grid; grid-template-columns: 3rem minmax(0, 1fr); gap: 1.75rem; padding-bottom: 1.5rem; }
 .history-list li:last-child { padding-bottom: 0; }
-.history-list li::before { content: ''; position: absolute; left: 3.625rem; top: .45rem; width: .5rem; height: .5rem; border-radius: 50%; background: var(--blue); z-index: 1; }
-.history-list li:not(:last-child)::after { content: ''; position: absolute; left: 3.875rem; top: .65rem; bottom: -.65rem; width: 1px; background: #dce5f1; }
-.history-list time { color: var(--blue); font-size: 1rem; font-weight: 750; line-height: 1.6; font-variant-numeric: tabular-nums; }
-.history-list h4 { margin: 0; color: var(--text); font-size: .9375rem; line-height: 1.7; font-weight: 700; }
-.history-list p { margin-top: .25rem; color: var(--muted); font-size: .8125rem; line-height: 1.8; }
-.history-list__latest h4 { color: var(--navy); }
+.history-list li::before { content: ''; position: absolute; left: calc(var(--history-axis) - .1875rem); top: .5625rem; width: .375rem; height: .375rem; border: 1px solid #b8c5d7; border-radius: 50%; background: #fff; z-index: 1; }
+.history-list li:not(:last-child)::after { content: ''; position: absolute; left: var(--history-axis); top: .75rem; bottom: -.75rem; width: 1px; background: #e4eaf2; }
+.history-list time { color: #738096; font-size: .9375rem; font-weight: 500; line-height: 1.7; letter-spacing: .025em; text-align: right; font-variant-numeric: tabular-nums; }
+.history-list h4 { margin: 0; color: #263449; font-size: .9375rem; line-height: 1.7; font-weight: 550; letter-spacing: -.025em; }
+.history-list p { margin-top: .375rem; color: #728096; font-size: .8125rem; line-height: 1.85; letter-spacing: -.015em; }
+.history-list__latest time { color: var(--blue); font-weight: 650; }
+.history-list__latest h4 { color: var(--navy); font-weight: 650; }
+.history-list li.history-list__latest::before { border-color: var(--blue); background: var(--blue); box-shadow: 0 0 0 3px #edf2ff; }
 @media (max-width: 359px) {
   .history { --history-gutter: 1rem; }
-  .history-awards { padding-block: 1.5rem 1.25rem; }
-  .history-award { gap: .25rem; padding-inline: .25rem; min-height: 5.5rem; }
-  .history-award__branch { width: .875rem; height: 4rem; flex-basis: .875rem; }
-  .history-award__text p, .history-award__text strong { font-size: .8125rem; }
-  .history-list li { grid-template-columns: 2.75rem minmax(0, 1fr); gap: 1.25rem; }
-  .history-list li::before { left: 3.125rem; }
-  .history-list li:not(:last-child)::after { left: 3.375rem; }
+  .history-list { --history-axis: 3.125rem; }
+  .history-list li { grid-template-columns: 2.625rem minmax(0, 1fr); gap: 1.625rem; }
   .history-list h4 { font-size: .875rem; }
 }
 
 /* 같은 연혁 목록의 항목과 상세 내용을 펼치고 접기 */
 .history [hidden] { display: none !important; }
-.history-toggle { display: flex; align-items: center; justify-content: space-between; gap: .75rem; width: 100%; min-height: 3.25rem; margin-top: 1.5rem; padding: .75rem 0; border: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); border-radius: 0; background: transparent; color: var(--navy); font: inherit; font-size: .875rem; font-weight: 650; text-align: left; cursor: pointer; }
-.history-toggle svg { width: 1.125rem; height: 1.125rem; flex: 0 0 auto; color: var(--blue); }
+.history-toggle { display: flex; align-items: center; justify-content: center; gap: .5rem; width: auto; min-height: 2.75rem; margin: 1.25rem auto 0; padding: .625rem .5rem; border: 0; border-radius: 0; background: transparent; color: var(--navy); font: inherit; font-size: .875rem; font-weight: 500; text-align: center; cursor: pointer; }
+.history-toggle svg { width: 1rem; height: 1rem; flex: 0 0 auto; color: #6d7f9b; }
 .history-toggle[aria-expanded="true"] svg { transform: rotate(180deg); }
 .history-toggle:focus-visible { outline: 3px solid #5895ff; outline-offset: 3px; border-radius: .25rem; }
+
+@media (max-width: 359px) {
+  .history-awards__grid { gap: .5rem; }
+}
