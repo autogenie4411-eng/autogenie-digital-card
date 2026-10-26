@@ -1,6 +1,6 @@
 name=황대호
 phone=010-8028-7720
-dnlsvmek@naver.com
+email=dnlsvmek@naver.com
 department=영업부
 position=팀장
 kakaoChatUrl=https://open.kakao.com/o/ssS8SeQi

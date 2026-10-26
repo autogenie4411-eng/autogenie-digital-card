@@ -1,0 +1,9 @@
+name=이기훈
+phone=010-4702-7731
+email=dlrlgns9089@naver.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/scAl49Ti
+siteName=이기훈 차장 | 오토지니
+photo=./sales_profiles/이기훈/이기훈.png
+

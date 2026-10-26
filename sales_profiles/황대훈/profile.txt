@@ -1,0 +1,9 @@
+name=황대훈		
+phone=010-2037-4984
+email=ghkdeogns0107@naver.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/suyRpmSi
+siteName= 황대훈 차장 | 오토지니
+photo=./sales_profiles/황대훈/황대훈.png
+
