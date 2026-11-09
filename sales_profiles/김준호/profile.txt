@@ -1,0 +1,8 @@
+name=김준호
+phone=010-9883-5357
+email=skswnsgh777@naver.com
+department=영업부
+position=차장
+kakaoChatUrl=https://open.kakao.com/o/sD96Dmzi
+siteName=김준호 차장 | 오토지니
+photo=./sales_profiles/김준호/김준호.png
