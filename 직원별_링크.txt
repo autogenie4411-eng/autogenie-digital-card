@@ -30,9 +30,6 @@ https://sales.agautoplan.com/cards/김진욱/
 김태훈
 https://sales.agautoplan.com/cards/김태훈/
 
-김형원
-https://sales.agautoplan.com/cards/김형원/
-
 박기민
 https://sales.agautoplan.com/cards/박기민/
 
@@ -44,9 +41,6 @@ https://sales.agautoplan.com/cards/박정훈/
 
 박지석
 https://sales.agautoplan.com/cards/박지석/
-
-유인채
-https://sales.agautoplan.com/cards/유인채/
 
 이기훈
 https://sales.agautoplan.com/cards/이기훈/
@@ -68,6 +62,9 @@ https://sales.agautoplan.com/cards/이준희/
 
 이창훈
 https://sales.agautoplan.com/cards/이창훈/
+
+이태우
+https://sales.agautoplan.com/cards/이태우/
 
 전혜강
 https://sales.agautoplan.com/cards/전혜강/
