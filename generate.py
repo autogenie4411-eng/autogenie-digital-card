@@ -1,5 +1,5 @@
 from pathlib import Path
-import re, html, urllib.parse, shutil
+import re, html, urllib.parse, shutil, hashlib
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 BASE = Path(__file__).resolve().parent
@@ -139,7 +139,9 @@ def build_card(template, folder, photo, data):
     # 직원별 링크 파일과 공유 URL에는 한글 이름을 그대로 표시한다.
     # 실제 HTTP 요청 시 브라우저가 필요한 경우 자동으로 URL 인코딩한다.
     page_url = f'{BASE_URL}/cards/{name}/'
-    og_url = f'{BASE_URL}/og/{urllib.parse.quote(name + "_og.png")}'
+    # 사진 내용이 바뀌면 OG URL 버전도 자동으로 변경되어 카카오 캐시를 갱신합니다.
+    photo_version = hashlib.sha1(photo.read_bytes()).hexdigest()[:12]
+    og_url = f'{BASE_URL}/og/{urllib.parse.quote(name + "_og.png")}?v={photo_version}'
 
     s = template
     s = re.sub(r'<title>.*?</title>', f'<title>{html.escape(site_name)}</title>', s, count=1, flags=re.S)
