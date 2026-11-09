@@ -1,6 +1,7 @@
 name=이태우
 phone=010-4677-9649
 email=chayogi8934@naver.com
+company=오토지니
 department=마케팅 부서
 position=이사
 kakaoChatUrl=https://open.kakao.com/o/sxIc4gWi
